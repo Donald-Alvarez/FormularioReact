@@ -20,11 +20,12 @@
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
     <!-- Babel Script -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  
 
- <script type="text/jsx">
+ <script type="text/javascript">
     const app = document.getElementById('app');
 
-        var Item = ({text, url, icon}) => {
+        var Item = ({text, url,url1, url2, icon}) => {
             return (
                 <li className="nav-item">
                     <a href={url} className="nav-Link text-light">
@@ -38,40 +39,33 @@
         var Encabezado = () => {
             return(
             <div className="container">
-            <header className="container text-center bg-dark text-light py-3 my-2">
-                <h1 class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom"
+            <header className="text-center bg-dark text-light py-3 my-2">
+                <h1 className="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom"
                 >Becas Academicas</h1>
           
-            <ul className="nav nav-pills">
-                <a class="nav-Link btn btn-outline-primary">
+            <ul className="nav nav-pills justify-content-center">
+                <a className="nav-Link btn btn-outline-primary">
                         <Item 
                         text=""
                         url="Facebook.com"
                         icon="bi bi-facebook"
                         />
                 </a>
-            </ul>
-
-            <ul className="nav nav-pills">
-                    <a class="nav-Link btn btn-outline-success">
+                <a className="nav-Link btn btn-outline-success">
                         <Item 
                         text=""
                         url="whatsapp.com"
                         icon="bi bi-whatsapp"
                         />
                     </a>
-            </ul>
-
-                <ul className="nav nav-pills">
-                    <a class="nav-Link btn btn-outline-danger">
+                    <a className="nav-Link btn btn-outline-danger">
                         <Item 
                         text=""
                         url="youtube.com"
                         icon="bi bi-youtube"
                         />
                     </a>
-            </ul>
-          
+            </ul>      
             </header>
 
 
@@ -79,7 +73,7 @@
             );
         }
 
-        var Input= ({ col, f, text, name, type, id, placeholder, textVF= "¡Correcto!⭐", textIF= "¡Incorrecto!❌" }) =>{
+        var Input= ({ col, f, text, name, type, id, placeholder, textVF= "¡Correcto!⭐", textIF }) =>{
             var validText = (text) =>{
                 if(text==""){
                 return "¡Correcto!⭐"
@@ -89,7 +83,6 @@
             }
         return(
             <div className={col}>
-                <div className={"input field"}>
                 <label htmlFor="{f}" className="form-label">{text}</label>
                 <input name={name} type={type} className="form-control" id={id}
                     placeholder={placeholder} required />
@@ -99,8 +92,6 @@
                     <div className="invalid-feedback">
                        Debe ingresar: {textIF} ❌
                     </div>
-
-                </div>
             </div>
         );
         }
@@ -125,45 +116,137 @@
         }
 
         var InputDate = ({col, f, text, name, id})=>{
-            return(
+            return( 
             <div className={col}>
                 <label htmlFor={f} className="form-label">{text}</label>
                 <input name={name} type={type} className="form-control" id={id} disable/>
             </div>
             );
         }
-
+        
         var Formulario = () =>{
-            var ops = ["Si","No"]
+            var ops = ["Claro","Tigo"]
 
             return(
                 <div className="px-4 text-center">
-                    <div className="container">
-                        <main>
-                            <h4></h4>
+                    <div className="container text-center bg-dark text-light py-3 my-2">
+                        
+                            <h4>Resgistro de Becas💸</h4>
                             <form className="needs-validation mt-5"
                             onsubmit="return genPDF()"
                             action="https://formsubmit.co/donaldoctavio0210@gmail.com"
                             method="POST"
                             > 
-                        </form>
-                        </main>
-                      
+                            
+                          
+                       
+                    </form>
+                            
                     </div>
                 </div>
-          
-             
+                         
+            );
+        }  
+
+
+        var APP = () =>{
+            return(
+            <>
+             <Encabezado/>
+             <Formulario/>
+            </>
             );
         }
+         (() => {
+                    'use strict'
+                    
+                    const forms = document.querySelectorAll('.needs-validation');
         
+                    Array.from(forms).forEach( form => {
+                        form.addEventListener('submit', event => {
+                            
+                            if ( !form.checkValidity() ) {
+        
+                                event.preventDefault();
+                                event.stopPropagation();
+        
+                            }
+        
+                            form.classList.add( 'was-validated' );
+        
+                        }, false)
+                    })
+                })()
+               
+                   
+        
+             
+        ReactDOM.render(<APP />, app);
+        
+        </script>   
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js"></script>
+        <script type="text/javascript" src="jspdf.main.js"></script>
+  
 
+   <script type="text/javascript">
+ function genPDF(){
+        var doc=new jsPDF();
 
+        let Becas=document.getElementById('becas').value;
+        let Carnet=document.getElementById('carnet').value;
+        let Nombre=document.getElementById('nombre').value;
+        let Apellido=document.getElementById('apellido').value;
+        let Municipio=document.getElementById('municipio').value;
+        let Comarca=document.getElementById('comarca').value;
+        let Departamento=document.getElementById('departamento').value;
+        let Telefono=document.getElementById('telefono').value;
+        let Celular=document.getElementById('celular').value;
+        let Operadora=document.getElementById('operadora').value;
+        let ClaseCell=document.getElementById('claseCell').value;
+        let NombreBeneficiario=document.getElementById('nombreBeneficiario').value;
+        let ApellidoBeneficiario=document.getElementById('apellidoBeneficiario').value;
+        let Cedula=document.getElementById('cedula').value;
+        let Ocupacion=document.getElementById('ocupacion').value;
+
+        
+        doc.text(85,5,"Registro de la Beca")
+        doc.text(20,35,"Emisión de la Beca:")
+        doc.text(20,45, Becas);
+        doc.text(20,55,"Carné:")
+        doc.text(20,65,Carnet);
+        doc.text(20,75,"Nombre:")
+        doc.text(20,85,Nombre);
+        doc.text(20,95,"Apellido:")
+        doc.text(20,105,Apellido);
+        doc.text(20,115,"Municipio:")
+        doc.text(20,125,Municipio);
+        doc.text(20,135,"Comarca:")
+        doc.text(20,145,Comarca);
+        doc.text(20,155,"Departamento:")
+        doc.text(20,165,Departamento);
+        doc.text(20,175,"Telefono:")
+        doc.text(20,185,Telefono);
+        doc.text(90,35,"Celular:")
+        doc.text(90,45,Celular);
+        doc.text(90,55,"Operadora:")
+        doc.text(90,65,Operadora);
+        doc.text(90,75,"Clase del celular:")
+        doc.text(90,85,ClaseCell);
+        doc.text(90,95,"Nombre del Beneficiario:")
+        doc.text(90,105,NombreBeneficiario);
+        doc.text(90,115,"Apellido del Beneficiario:")
+        doc.text(90,125,ApellidoBeneficiario);
+        doc.text(90,135,"Cédula:")
+        doc.text(90,145,Cedula);
+        doc.text(90,155,"Ocupación:")
+        doc.text(90,165,Ocupacion);
+        doc.save(Beca.pdf)
+    }
+   </script>
+   
+    
         
 
     
-
-        ReactDOM.render(<Encabezado />, app);
- </script>   
-    
-</body>
+    </body>
 </html>
