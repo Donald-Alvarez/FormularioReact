@@ -22,7 +22,7 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   
 
- <script type="text/javascript">
+ <script type="text/jsx">
     const app = document.getElementById('app');
 
         var Item = ({text, url,url1, url2, icon}) => {
@@ -137,6 +137,158 @@
                             action="https://formsubmit.co/donaldoctavio0210@gmail.com"
                             method="POST"
                             > 
+                            <div className="col-lg">
+                                <div className="input-field">
+                                    <Input
+                                    col="col-lg"
+                                    f="becas"
+                                    text="Solicitud📄"
+                                    name="Becas"
+                                    type="date"
+                                    id="becas"  
+                                    />
+                                </div>
+
+                            </div>
+                            <div className="input-group row g-3">
+                                    <div className="row g-3">
+                                        <Input
+                                        col="col-md-6"
+                                        f="carnet"
+                                        text="🆔Carnet:"
+                                        name="Carnet"
+                                        type="text"
+                                        id="carnet"
+                                        placeholder="Ingrese su carnet"
+                                        />
+                                        <Input
+                                        col="col-md-6"
+                                        f="cedula"
+                                        text="Cedula🪪:"
+                                        name="Cedula"
+                                        type="numbers"
+                                        id="cedula"
+                                        placeholder="xxx-xxxxxx-xxxxx"
+                                        />
+                                        <Input
+                                        col="col-md-6"
+                                        f="nombre"
+                                        text="✅Nombre:"
+                                        name="Nombre"
+                                        type=""
+                                        id="nombre"
+                                        placeholder="Ingrese su nombre"
+                                        />
+                                        <Input
+                                        col="col-md-6"
+                                        f="apellido"
+                                        text="✅Apellido:"
+                                        name="Apellido"
+                                        type="text"
+                                        id="apellido"
+                                        placeholder="Ingrese su Apellido"
+                                        />
+                                        <Input
+                                        col="col-md-6"
+                                        f="municipio"
+                                        text="Municipio🛐:"
+                                        name="Municipio"
+                                        type="text"
+                                        id="municipio"
+                                        placeholder="Ingrese su nombre"
+                                        />
+                                        <Input
+                                        col="col-md-6"
+                                        f="departamento"
+                                        text="Departamento🗺️:"
+                                        name="Departamento"
+                                        type="text"
+                                        id="departamento"
+                                        placeholder="Ingrese su departamento"
+                                        />
+                                        <Input
+                                        col="col-md-6"
+                                        f="comarca"
+                                        text="Comarca🏠:"
+                                        name="Comarca"
+                                        type="text"
+                                        id="comarca"
+                                        placeholder="escriba: NO: sino tiene."
+                                        />
+                                     
+                                        <Input
+                                        col="col-md-6"
+                                        f="telefono"
+                                        text="Covencional☎️:"
+                                        name="Telefono"
+                                        type="text"
+                                        id="telefono"
+                                        placeholder="Ingrese su telefono"
+                                        />
+                                        <Input
+                                        col="col-md-6"
+                                        f="celular"
+                                        text="Celular📱:"
+                                        name="celular"
+                                        type="text"
+                                        id="celular"
+                                        placeholder="Ingrese su numero"
+                                        />
+                                        <div class="col-md-6">
+                                            <label for="operadora" class="form-label">Operadora de celular📶</label>
+                                            <select class="form-select" name="Operadora" id="operadora" aria-label="Default select example">
+                                            <option selected>Selecciones✅</option>
+                                            <option value="Claro">Claro ⭕</option>
+                                            <option value="Tigo">Tigo 🔵</option>
+                                             </select> 
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="claseCell" class="form-label">Clase de celular📶</label>
+                                            <select class="form-select" name="ClaseCell" id="claseCell" aria-label="Default select example">
+                                            <option selected>Selecciones✅</option>
+                                            <option value="Inteligente">Inteligente 📱</option>
+                                            <option value="Simple">Simple 🤳</option>
+                                             </select> 
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="ocupacion" class="form-label">Ocupación</label>
+                                            <select class="form-select" name="Ocupacion" id="ocupacion" aria-label="Default select example">
+                                            <option selected>Selecciones✅</option>
+                                            <option value="Estudia">Estudia 🧑‍🎓</option>
+                                            <option value="Trabaja">Trabaja 👨‍🏭</option>
+                                             </select> 
+                                        </div>
+                                        <Input
+                                        col="col-md-6"
+                                        f="nombreBeneficiario"
+                                        text="Nomnbe del Beneficiario⭐:"
+                                        name="NombreBeneficiario"
+                                        type="text"
+                                        id="nombreBeneficiario"
+                                        placeholder="Ingrese el Nombre"
+                                        />
+                                        <Input
+                                        col="col-md-6"
+                                        f="apellidoBeneficiario"
+                                        text="apellido del Beneficiario⭐:"
+                                        name="ApellidoBeneficiario"
+                                        type="text"
+                                        id="ApellidoBeneficiario"
+                                        placeholder="Ingrese el Apellido"
+                                        />
+                                </div>
+
+                                <div class="d-grid gap-2 col-6 mx-auto">
+                                    <button 
+                                    type="submit"
+                                    class="btn btn-outline-primary"
+                                    onclick="realizarCita()"
+                                    >
+                                    
+                                    Enviar
+                                    </button>
+                                </div>
+                            </div>
                             
                           
                        
