@@ -35,6 +35,91 @@
                 </li>
             );
         }
+
+        class Boton extends React.Component {
+      handleClick() {
+        const form = document.getElementById("miFormulario");
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+          form.classList.add('was-validated');
+        } else {
+          const Becas=document.getElementById('becas').value;
+          const Carnet=document.getElementById('carnet').value;
+          const Cedula=document.getElementById('cedula').value;
+          const Nombre=document.getElementById('nombre').value;
+          const Apellido=document.getElementById('apellido').value;
+          const Municipio=document.getElementById('municipio').value;
+          const Comarca=document.getElementById('comarca').value;
+          const Telefono=document.getElementById('telefono').value;
+          const Celular=document.getElementById('celular').value;
+          const Operadora=document.getElementById('operadora').value;
+          const Ocupacion=document.getElementById('ocupacion').value;
+          const NombreBeneficiario=document.getElementById('nombreBeneficiario').value;
+          const ApellidoBeneficiario=document.getElementById('apellidoBeneficiario').value;
+      
+         
+          
+          const doc=new jsPDF();
+          doc.text(60,10,"Solicitud de Beca");
+          doc.text(30,30,"Becas: "+Becas);
+          
+          doc.text(30,55,"Carnet: "+Carnet);
+          
+          doc.text(30,85,"Nombre: "+Nombre);
+          
+          doc.text(30,105,"Apellido: "+Apellido);
+          
+          doc.text(30,125,"Telefono: "+Municipio);
+          
+          doc.text(30,145,"Comarca: "+Comarca);
+          
+          doc.text(30,165,"Telefono: "+Telefono);
+          
+          doc.text(90,30,"Celular: "+Celular);
+          
+          doc.text(90,55,"Operadora: "+Operadora);
+          
+          doc.text(90,75,"Ocupacion: "+Ocupacion);
+          
+          doc.text(90,95,"NombreBeneficiario: "+NombreBeneficiario);
+          
+          doc.text(90,125,"ApellidoBeneficiario: "+ApellidoBeneficiario);
+
+          doc.text(90,145,"Cedula: "+Cedula);
+        
+         
+          
+          
+          
+        
+          doc.save("Solicitu de Beca.pdf");
+        }
+      }
+      render() {
+        return (
+          <div className="px-4 text-center">
+            <div className="container">
+              <main>
+                <form id="miFormulario" className="needs-validation mt-5" method="POST" action="https://formsubmit.co/stevengreyvin00@gmail.com"
+                  noValidate>
+
+                  <Formulario/>
+
+
+                  <hr className="d-grid gap-2 col-6 mx-auto"></hr>
+                  <button onClick={this.handleClick.bind(this)} type="submit" className="btn btn-outline-primary">
+                    Generar Cita
+                  </button>
+                  <hr />
+                </form>
+              </main>
+            </div>
+          </div>
+        );
+      }
+    }
+
         
         var Encabezado = () => {
             return(
@@ -90,53 +175,55 @@
                         {validText(textVF)}
                     </div>
                     <div className="invalid-feedback">
-                       Debe ingresar: {textIF} ❌
+                       Debe ingresar: {textIF} 😡
                     </div>
             </div>
         );
         }
-        var InputSelect = ({col, f, text, name, id, options}) => {
+        var InputSelect = ({col, f, text, name, id, options}) =>{
 
-            return (
-                <div className={col}>
-                <label htmlFor={f} className="form-label">{text}</label>
-                <select name={name} className="form-select" id={id} required>
-                    {
-                        options.map((op) => (
-                            <option value={op}>{op}</option>
-                        ))
-                    }
-                    </select>
-                    <div class="valid-feedback">
-                    Correcto!! ⭐
-                </div>
-            </div>
-         );
-  
-        }
+return(
+    <div className={col}>
+        <label htmlFor={f} className="form-label"> {text}</label>
+        <select name={name} className="form-select" id={id} required>
+            {
+                options.map((op)=> (
+                    <option value={op}>{op}</option>
+                ))
+            }
 
-        var InputDate = ({col, f, text, name, id})=>{
-            return( 
-            <div className={col}>
-                <label htmlFor={f} className="form-label">{text}</label>
-                <input name={name} type={type} className="form-control" id={id} disable/>
+        </select>
+
+            <div className="valid-feedback">
+                "¡Correcto! ⭐"
+
             </div>
-            );
-        }
+
+    </div>
+);
+}
+
+var InputDate =({col, f, text, name, type, id}) =>{
+
+return (
+    <div className={col}>
+        <label htmlFor={f} className="form-label">{text} </label>
+        <input name={name} type={type} className="form-control" id={id} disable/>
+
+    </div>
+       )
+      }
         
         var Formulario = () =>{
             var ops = ["Claro","Tigo"]
+            var ops1= ["Estudiante", "Trabajador"]
 
             return(
                 <div className="px-4 text-center">
                     <div className="container text-center bg-dark text-light py-3 my-2">
-                        
+                        <main>
                             <h4>Resgistro de Becas💸</h4>
-                            <form className="needs-validation mt-5"
-                            onsubmit="return genPDF()"
-                            action="https://formsubmit.co/donaldoctavio0210@gmail.com"
-                            method="POST"
-                            > 
+                        
                             <div className="col-lg">
                                 <div className="input-field">
                                     <Input
@@ -166,7 +253,7 @@
                                         f="cedula"
                                         text="Cedula🪪:"
                                         name="Cedula"
-                                        type="numbers"
+                                        type="number"
                                         id="cedula"
                                         placeholder="xxx-xxxxxx-xxxxx"
                                         />
@@ -175,7 +262,7 @@
                                         f="nombre"
                                         text="✅Nombre:"
                                         name="Nombre"
-                                        type=""
+                                        type="text"
                                         id="nombre"
                                         placeholder="Ingrese su nombre"
                                         />
@@ -221,7 +308,7 @@
                                         f="telefono"
                                         text="Covencional☎️:"
                                         name="Telefono"
-                                        type="text"
+                                        type="number"
                                         id="telefono"
                                         placeholder="Ingrese su telefono"
                                         />
@@ -229,35 +316,31 @@
                                         col="col-md-6"
                                         f="celular"
                                         text="Celular📱:"
-                                        name="celular"
-                                        type="text"
+                                        name="Celular"
+                                        type="number"
                                         id="celular"
                                         placeholder="Ingrese su numero"
                                         />
-                                        <div class="col-md-6">
-                                            <label for="operadora" class="form-label">Operadora de celular📶</label>
-                                            <select class="form-select" name="Operadora" id="operadora" aria-label="Default select example">
-                                            <option selected>Selecciones✅</option>
-                                            <option value="Claro">Claro ⭕</option>
-                                            <option value="Tigo">Tigo 🔵</option>
-                                             </select> 
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="claseCell" class="form-label">Clase de celular📶</label>
-                                            <select class="form-select" name="ClaseCell" id="claseCell" aria-label="Default select example">
-                                            <option selected>Selecciones✅</option>
-                                            <option value="Inteligente">Inteligente 📱</option>
-                                            <option value="Simple">Simple 🤳</option>
-                                             </select> 
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="ocupacion" class="form-label">Ocupación</label>
-                                            <select class="form-select" name="Ocupacion" id="ocupacion" aria-label="Default select example">
-                                            <option selected>Selecciones✅</option>
-                                            <option value="Estudia">Estudia 🧑‍🎓</option>
-                                            <option value="Trabaja">Trabaja 👨‍🏭</option>
-                                             </select> 
-                                        </div>
+                                     
+                                        <InputSelect
+                                        col="col-md-6"
+                                        f= "operadora"
+                                        text="Operadora📶"
+                                        name="Operadora"
+                                        id="operadora"
+                                        options={ops}
+                                        />
+
+                                        <InputSelect
+                                        col="col-md-6"
+                                        f= "ocupacion"
+                                        text="Ocupacion"
+                                        name="Ocupacion"
+                                        id="ocupacion"
+                                        options={ops1}
+                                        /> 
+
+                                     
                                         <Input
                                         col="col-md-6"
                                         f="nombreBeneficiario"
@@ -273,28 +356,16 @@
                                         text="apellido del Beneficiario⭐:"
                                         name="ApellidoBeneficiario"
                                         type="text"
-                                        id="ApellidoBeneficiario"
+                                        id="apellidoBeneficiario"
                                         placeholder="Ingrese el Apellido"
                                         />
                                 </div>
 
-                                <div class="d-grid gap-2 col-6 mx-auto">
-                                    <button 
-                                    type="submit"
-                                    class="btn btn-outline-primary"
-                                    onclick="realizarCita()"
-                                    >
-                                    
-                                    Enviar
-                                    </button>
-                                </div>
-                            </div>
-                            
-                          
-                       
-                    </form>
-                            
+                             
+                            </div>     
+                        </main>           
                     </div>
+                    
                 </div>
                          
             );
@@ -305,7 +376,7 @@
             return(
             <>
              <Encabezado/>
-             <Formulario/>
+             <Boton/>
             </>
             );
         }
